@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-mediawiki-oauth-tool",
+  "version": "1.0.0",
+  "description": "This git repository contains the source code for a basic Node.js webservice. It shows how to use the passport-mediawiki-oauth package to manage OAuth authentication with a MediaWiki server.",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/srish/nodejs-mediawiki-oauth-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srish/nodejs-mediawiki-oauth-tool/issues"
+  },
+  "homepage": "https://github.com/srish/nodejs-mediawiki-oauth-tool#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "http": "0.0.0",
+    "passport": "^0.4.0",
+    "passport-mediawiki-oauth": "^0.1.0"
+  }
+}
