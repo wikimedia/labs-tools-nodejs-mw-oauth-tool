@@ -27,7 +27,9 @@ var config = require( "./config" );
 
 var app = express();
 
-app.set( "view engine", "ejs" );
+app.set( 'views', __dirname + '/public/views' )
+app.set( 'view engine', 'ejs' )
+app.use( express.static(__dirname + '/public/views') )
 
 app.use( passport.initialize() );
 app.use( passport.session() );
@@ -61,24 +63,24 @@ passport.deserializeUser( function ( obj, done ) {
 	done( null, obj );
 });
 
-app.get( "/", function ( req, res ) {
+app.get( "/nodejs-mw-oauth-tool", function ( req, res ) {
 	res.render( "index", {
 		user: req.session.user
 	} );
 } );
 
-app.get( "/login", function ( req, res ) {
-	res.redirect( "/auth/mediawiki/callback" );
+app.get( "/nodejs-mw-oauth-tool/login", function ( req, res ) {
+	res.redirect( "/nodejs-mw-oauth-tool/auth/mediawiki/callback" );
 } );
 
-app.get( "/auth/mediawiki/callback", function( req, res, next ) {
+app.get( "/nodejs-mw-oauth-tool/auth/mediawiki/callback", function( req, res, next ) {
 	passport.authenticate( "mediawiki", function( err, user ) {
 		if ( err ) { 
 			return next( err ); 
 		}
 
 		if ( !user ) { 
-			return res.redirect( "/login" ); 
+			return res.redirect( "/nodejs-mw-oauth-tool/login" ); 
 		}
 
 		req.logIn( user, function( err ) {
@@ -86,14 +88,14 @@ app.get( "/auth/mediawiki/callback", function( req, res, next ) {
 				return next( err ); 
 			}
 			req.session.user = user;
-			res.redirect( "/" );
+			res.redirect( "/nodejs-mw-oauth-tool" );
 		} );
 	} )( req, res, next );
 } );
 
-app.get( "/logout" , function ( req, res ) {
+app.get( "/nodejs-mw-oauth-tool/logout" , function ( req, res ) {
 	delete req.session.user;
-	res.redirect( "/" );
+	res.redirect( "/nodejs-mw-oauth-tool" );
 } );
 
 app.listen( process.env.PORT || 5000, function () {

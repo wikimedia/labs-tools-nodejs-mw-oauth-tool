@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "This git repository contains the source code for a basic Node.js webservice. It shows how to use the passport-mediawiki-oauth package to manage OAuth authentication with a MediaWiki server.",
   "main": "server.js",
-  "scripts": {
-    "test": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/srish/nodejs-mediawiki-oauth-tool.git"
