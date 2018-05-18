@@ -23,4 +23,4 @@ $ cd /www/js
 
 Credits 
 -------
-* [Passport MediaWiki OAuth npm module by Dan Andreescu)](https://www.npmjs.com/package/passport-mediawiki-oauth
+* [Passport MediaWiki OAuth npm module by Dan Andreescu](https://www.npmjs.com/package/passport-mediawiki-oauth)
