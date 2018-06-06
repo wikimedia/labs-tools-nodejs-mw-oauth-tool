@@ -26,10 +26,11 @@ var MediaWikiStrategy = require( "passport-mediawiki-oauth" ).OAuthStrategy;
 var config = require( "./config" );
 
 var app = express();
+var router = express.Router();
 
-app.set( 'views', __dirname + '/public/views' )
-app.set( 'view engine', 'ejs' )
-app.use( express.static(__dirname + '/public/views') )
+app.set( "views", __dirname + "/public/views" );
+app.set( "view engine", "ejs" );
+app.use( express.static(__dirname + "/public/views") );
 
 app.use( passport.initialize() );
 app.use( passport.session() );
@@ -38,6 +39,8 @@ app.use( session({ secret: "OAuth Session",
 	saveUninitialized: true,
 	resave: true
 }) );
+
+app.use( "/nodejs-mw-oauth-tool", router );
 
 passport.use(
 	new MediaWikiStrategy({
@@ -53,7 +56,7 @@ passport.use(
 		};
 		return done( null, profile );
 	}
-) );
+	) );
 
 passport.serializeUser(	function ( user, done ) {
 	done( null, user );
@@ -63,24 +66,25 @@ passport.deserializeUser( function ( obj, done ) {
 	done( null, obj );
 });
 
-app.get( "/nodejs-mw-oauth-tool", function ( req, res ) {
+router.get( "/", function ( req, res ) {
 	res.render( "index", {
-		user: req.session.user
+		user: req && req.session && req.session.user,
+		url: req.baseUrl
 	} );
 } );
 
-app.get( "/nodejs-mw-oauth-tool/login", function ( req, res ) {
-	res.redirect( "/nodejs-mw-oauth-tool/auth/mediawiki/callback" );
+router.get( "/login", function ( req, res ) {
+	res.redirect( req.baseUrl + "/auth/mediawiki/callback" );
 } );
-
-app.get( "/nodejs-mw-oauth-tool/auth/mediawiki/callback", function( req, res, next ) {
+ 
+router.get( "/auth/mediawiki/callback", function( req, res, next ) {
 	passport.authenticate( "mediawiki", function( err, user ) {
 		if ( err ) { 
 			return next( err ); 
 		}
 
 		if ( !user ) { 
-			return res.redirect( "/nodejs-mw-oauth-tool/login" ); 
+			return res.redirect( req.baseUrl + "/login" ); 
 		}
 
 		req.logIn( user, function( err ) {
@@ -88,14 +92,14 @@ app.get( "/nodejs-mw-oauth-tool/auth/mediawiki/callback", function( req, res, ne
 				return next( err ); 
 			}
 			req.session.user = user;
-			res.redirect( "/nodejs-mw-oauth-tool" );
+			res.redirect( req.baseUrl + "/" );
 		} );
 	} )( req, res, next );
 } );
 
-app.get( "/nodejs-mw-oauth-tool/logout" , function ( req, res ) {
+router.get( "/logout" , function ( req, res ) {
 	delete req.session.user;
-	res.redirect( "/nodejs-mw-oauth-tool" );
+	res.redirect( req.baseUrl + "/" );
 } );
 
 app.listen( process.env.PORT || 5000, function () {

@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <h3>My first flask oauth app</h3>
 <% if(user) { %>
-    <p>Greetings, <%= user.displayName %>! <a href="/nodejs-mw-oauth-tool/logout">Click to logout</a></p>
+    <p>Greetings, <%= user.displayName %>! <a href="<%= url %>/logout">Click to logout</a></p>
 <% } else { %>
-	<p><a href="/nodejs-mw-oauth-tool/login">Click here to login</a></p>
+	<p><a href="<%= url %>/login">Click here to login</a></p>
 <% } %>
