@@ -1,8 +1,8 @@
 <!-- views/index.ejs -->
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <h3>My first flask oauth app</h3>
 <% if(user) { %>
-    <p>Greetings, <%= user.displayName %>! <a href="<%= url %>/logout">Click to logout</a></p>
+  Greetings, <%= user.displayName %>! <a href="<%= url %>/logout">Click to logout</a>
 <% } else { %>
-	<p><a href="<%= url %>/login">Click here to login</a></p>
+  <a href="<%= url %>/login">Click here to login</a>
 <% } %>

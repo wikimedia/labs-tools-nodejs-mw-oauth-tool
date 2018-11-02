@@ -19,14 +19,14 @@
 
 */
 
-var express = require( "express" );
-var session = require( "express-session" );
-var passport = require( "passport" );
-var MediaWikiStrategy = require( "passport-mediawiki-oauth" ).OAuthStrategy;
-var config = require( "./config" );
+var express = require( "express" ),
+	session = require( "express-session" ),
+	passport = require( "passport" ),
+	MediaWikiStrategy = require( "passport-mediawiki-oauth" ).OAuthStrategy,
+	config = require( "./config" ),
 
-var app = express();
-var router = express.Router();
+	app = express(),
+	router = express.Router();
 
 app.set( "views", __dirname + "/public/views" );
 app.set( "view engine", "ejs" );

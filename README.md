@@ -1,6 +1,8 @@
 # nodejs-mediawiki-oauth-tool
 
-This git repository contains the source code for a basic Node.js webservice. It shows how to use the passport-mediawiki-oauth package to manage OAuth authentication with a MediaWiki server. 
+A basic Node.js webservice. It shows how to manage OAuth authentication with a MediaWiki server via the passport-mediawiki-oauth package
+
+Developed for [My first NodeJS OAuth tool](https://wikitech.wikimedia.org/wiki/Help:Toolforge/My_first_NodeJS_OAuth_tool) tutorial on Wikitech. 
 
 Development
 -----------
@@ -14,7 +16,7 @@ $ node server.js
 
 For production
 --------------
-The bot is hosted here on Wikimedia's Toolforge: https://tools.wmflabs.org/nodejs-mw-oauth-tool. To make changes:
+The tool is hosted here on Wikimedia's Toolforge: https://tools.wmflabs.org/nodejs-mw-oauth-tool. To make changes:
 ``` 
 $ ssh username@login.tools.wmflabs.org
 $ become nodejs-mw-oauth-tool
